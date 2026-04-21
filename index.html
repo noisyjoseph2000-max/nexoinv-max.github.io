@@ -332,10 +332,32 @@ document.getElementById("transactions").prepend(div);
 }
 
 function toggleSidebar(){
-document.querySelector(".sidebar").classList.toggle("active");
-}
+    const sidebar = document.querySelector(".sidebar");
+    const overlay = document.getElementById("overlay");
 
+    sidebar.classList.toggle("active");
+
+    if (sidebar.classList.contains("active")) {
+        overlay.style.display = "block";
+    } else {
+        overlay.style.display = "none";
+    }
+}
 updateUI();
+
+    // CLOSE WHEN CLICKING OVERLAY
+document.getElementById("overlay").addEventListener("click", function(){
+    document.querySelector(".sidebar").classList.remove("active");
+    this.style.display = "none";
+});
+
+// CLOSE WHEN CLICKING ANY SIDEBAR LINK
+document.querySelectorAll(".nav-link").forEach(link => {
+    link.addEventListener("click", () => {
+        document.querySelector(".sidebar").classList.remove("active");
+        document.getElementById("overlay").style.display = "none";
+    });
+});
 </script>
 
 </body>
