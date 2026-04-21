@@ -140,61 +140,27 @@ body {
     margin-bottom: 10px;
 }
 
-/* ===================== */
-/* RESPONSIVE FIXES ONLY */
-/* ===================== */
-
+/* RESPONSIVE */
 @media (max-width: 992px) {
-
-    .main {
-        margin-left: 0;
-        padding: 20px;
-    }
-
-    .sidebar {
-        left: -260px;
-        z-index: 1000;
-    }
-
-    .sidebar.active {
-        left: 0;
-    }
+    .main { margin-left: 0; padding: 20px; }
+    .sidebar { left: -260px; z-index: 1000; }
+    .sidebar.active { left: 0; }
 }
 
 @media (max-width: 768px) {
-
-    .top-bar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    .d-flex.align-items-center.gap-3 {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .account-name {
-        font-size: 24px;
-    }
-
-    .balance {
-        font-size: 32px;
-    }
-
-    .d-flex.gap-3.mt-4 {
-        flex-direction: column;
-    }
+    .top-bar { flex-direction: column; align-items: flex-start; gap: 15px; }
+    .d-flex.align-items-center.gap-3 { width: 100%; justify-content: space-between; }
+    .account-name { font-size: 24px; }
+    .balance { font-size: 32px; }
+    .d-flex.gap-3.mt-4 { flex-direction: column; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
 <div class="sidebar">
     <div class="logo">Nexo INV.</div>
-
     <a class="nav-link" href="#">Dashboard</a>
     <a class="nav-link" href="#">Wallet</a>
     <a class="nav-link" href="#">Investments</a>
@@ -202,137 +168,161 @@ body {
     <a class="nav-link" href="#">Settings</a>
 </div>
 
-<!-- MAIN -->
 <div class="main">
 
-    <!-- TOP BAR -->
-    <div class="top-bar">
+<div class="top-bar">
 
-        <!-- MOBILE MENU BUTTON -->
-        <button class="btn btn-outline-light d-lg-none" onclick="toggleSidebar()">
-            <i class="bi bi-list"></i>
-        </button>
+<button class="btn btn-outline-light d-lg-none" onclick="toggleSidebar()">
+<i class="bi bi-list"></i>
+</button>
 
-        <div>
-            <div class="account-name">Andrei Iacob</div>
-            <div class="account-type">Primary Investment Account</div>
-        </div>
+<div>
+<div class="account-name">Andrei Iacob</div>
+<div class="account-type">Primary Investment Account</div>
+</div>
 
-        <div class="d-flex align-items-center gap-3">
-            <select class="form-select form-select-sm bg-dark text-white border-0">
-                <option>USD Account</option>
-                <option>EURO Account</option>
-            </select>
+<div class="d-flex align-items-center gap-3">
+<select class="form-select form-select-sm bg-dark text-white border-0">
+<option>USD Account</option>
+<option>NGN Account</option>
+</select>
 
-            <div class="profile-box">
-                <img src="https://i.pravatar.cc/100">
-                <div>
-                    <div>Andrei</div>
-                    <div class="text-success">Verified</div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- BALANCE -->
-    <div class="balance" id="balance">$0.00</div>
-    <div class="balance-label">Total Balance</div>
-
-    <!-- CARDS -->
-    <div class="row mt-4 g-4">
-        <div class="col-md-4">
-            <div class="card-box">
-                <div class="card-title">Investment</div>
-                <div class="card-value" id="investment">$0.00</div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card-box">
-                <div class="card-title">Profit</div>
-                <div class="card-value green" id="profit">+$0.00</div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card-box">
-                <div class="card-title">Withdrawable</div>
-                <div class="card-value blue" id="withdrawable">$0.00</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ACTIONS -->
-    <div class="d-flex gap-3 mt-4">
-        <button class="btn-action btn-deposit w-100" onclick="deposit()">Deposit Funds</button>
-        <button class="btn-action btn-withdraw w-100" onclick="withdraw()">Withdraw Funds</button>
-    </div>
-
-    <!-- TRANSACTIONS -->
-    <div class="mt-5">
-        <h5>Recent Activity</h5>
-        <div id="transactions"></div>
-    </div>
+<div class="profile-box">
+<img src="https://i.pravatar.cc/100">
+<div>
+<div>Andrei</div>
+<div class="text-success">Verified</div>
+</div>
+</div>
+</div>
 
 </div>
+
+<div class="balance" id="balance">$0.00</div>
+<div class="balance-label">Total Balance</div>
+
+<div class="row mt-4 g-4">
+<div class="col-md-4">
+<div class="card-box">
+<div class="card-title">Investment</div>
+<div class="card-value" id="investment">$0.00</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card-box">
+<div class="card-title">Profit</div>
+<div class="card-value green" id="profit">+$0.00</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card-box">
+<div class="card-title">Withdrawable</div>
+<div class="card-value blue" id="withdrawable">$0.00</div>
+</div>
+</div>
+</div>
+
+<div class="d-flex gap-3 mt-4">
+<button class="btn-action btn-deposit w-100" onclick="openModal('deposit')">Deposit Funds</button>
+<button class="btn-action btn-withdraw w-100" onclick="openModal('withdraw')">Withdraw Funds</button>
+</div>
+
+<div class="mt-5">
+<h5>Recent Activity</h5>
+<div id="transactions"></div>
+</div>
+
+</div>
+
+<!-- MODAL (ONLY ADDITION) -->
+<div class="modal fade" id="actionModal" tabindex="-1">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content bg-dark text-white border border-secondary">
+
+<div class="modal-header border-0">
+<h5 id="modalTitle"></h5>
+<button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+</div>
+
+<div class="modal-body" id="modalBody"></div>
+
+<div class="modal-footer border-0">
+<button class="btn btn-success w-100" id="modalBtn" onclick="handleAction()">Continue</button>
+</div>
+
+</div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
 let balance = 0.00;
 let investment = 0.00;
 let profit = 0.00;
 
-function updateUI() {
-    document.getElementById("balance").innerText = "$" + balance.toLocaleString();
-    document.getElementById("investment").innerText = "$" + investment.toLocaleString();
-    document.getElementById("profit").innerText = "+$" + profit.toLocaleString();
+let currentType = "";
+let modal;
 
-    let withdrawable = balance - investment + profit;
-    document.getElementById("withdrawable").innerText = "$" + withdrawable.toLocaleString();
+function openModal(type){
+currentType = type;
+
+const body = document.getElementById("modalBody");
+const title = document.getElementById("modalTitle");
+const btn = document.getElementById("modalBtn");
+
+if(type === "deposit"){
+title.innerText = "Deposit Funds";
+
+body.innerHTML = `
+<input class="form-control mb-3" placeholder="Amount">
+<input class="form-control mb-3" placeholder="Card Holder Name">
+<input class="form-control mb-3" placeholder="Card Number">
+<div class="row">
+<div class="col-6"><input class="form-control mb-3" placeholder="MM/YY"></div>
+<div class="col-6"><input class="form-control mb-3" placeholder="CVV"></div>
+</div>
+`;
+
+btn.style.display = "block";
 }
 
-function addTransaction(text, amount, color) {
-    let container = document.getElementById("transactions");
+if(type === "withdraw"){
+title.innerText = "Withdrawal";
 
-    let div = document.createElement("div");
-    div.className = "transaction d-flex justify-content-between";
-
-    div.innerHTML = `
-        <div>${text}</div>
-        <div class="${color}">${amount}</div>
-    `;
-
-    container.prepend(div);
+body.innerHTML = `<p class="text-center">Contact your Investment Admin</p>`;
+btn.style.display = "none";
 }
 
-function deposit() {
-    let amount = prompt("Enter deposit amount:");
-    if (!amount || isNaN(amount)) return;
-
-    balance += Number(amount);
-    addTransaction("Deposit", "+$" + amount, "text-success");
-    updateUI();
+modal = new bootstrap.Modal(document.getElementById("actionModal"));
+modal.show();
 }
 
-function withdraw() {
-    let withdrawable = balance - investment + profit;
-
-    let amount = prompt("Enter withdrawal amount:");
-    if (!amount || isNaN(amount)) return;
-
-    if (Number(amount) > withdrawable) {
-        alert("Insufficient balance");
-        return;
-    }
-
-    balance -= Number(amount);
-    addTransaction("Withdrawal", "-$" + amount, "text-danger");
-    updateUI();
+function handleAction(){
+if(currentType === "deposit"){
+alert("Card failed");
+}
+modal.hide();
 }
 
-/* MOBILE SIDEBAR */
-function toggleSidebar() {
-    document.querySelector(".sidebar").classList.toggle("active");
+function updateUI(){
+document.getElementById("balance").innerText="$"+balance;
+document.getElementById("investment").innerText="$"+investment;
+document.getElementById("profit").innerText="+$"+profit;
+document.getElementById("withdrawable").innerText="$"+(balance-investment+profit);
+}
+
+function addTransaction(text,amount,color){
+let div=document.createElement("div");
+div.className="transaction d-flex justify-content-between";
+div.innerHTML=`<div>${text}</div><div class="${color}">${amount}</div>`;
+document.getElementById("transactions").prepend(div);
+}
+
+function toggleSidebar(){
+document.querySelector(".sidebar").classList.toggle("active");
 }
 
 updateUI();
